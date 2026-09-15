@@ -54,8 +54,8 @@ These are default recommendations to keep momentum — any of them can be change
 - [x] Provision the VPS — Hetzner CX23 (2 vCPU / 4GB RAM), Ubuntu 24.04, `116.203.225.167`
 - [x] Harden basic security: non-root user (`sergio`, sudo via SSH key only), root login and password auth disabled, `ufw` (22/80/443 only), `fail2ban` on sshd
 - [x] Install Docker and Docker Compose on the VPS
-- [ ] Set up automatic VPS backups (Hetzner snapshots, or `restic`/`borgbackup` to an external bucket) — decide this **before** any project holds real user data (e.g. restaurant reservations)
-- [ ] Install basic uptime monitoring (Uptime Kuma in its own container, or an external service like UptimeRobot)
+- [x] Set up automatic VPS backups — Hetzner weekly backups enabled (last 7 kept)
+- [x] Install basic uptime monitoring — Uptime Kuma at `status.sergiojover.dev`, monitoring the portfolio site
 
 ### 2.2 Reverse proxy and subdomains
 - [x] Install Traefik as a reverse proxy — `~/traefik/docker-compose.yml` on the VPS, Traefik v3.5
