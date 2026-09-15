@@ -52,6 +52,7 @@ export interface Content {
     availability: string[];
     downloadCv: string;
     contactMe: string;
+    photoAlt: string;
   };
   about: {
     heading: string;
@@ -114,6 +115,7 @@ const en: Content = {
     ],
     downloadCv: "Download CV",
     contactMe: "Contact me",
+    photoAlt: "Portrait of Sergio Jover Penalva",
   },
   about: {
     heading: "About me",
@@ -248,6 +250,7 @@ const es: Content = {
     ],
     downloadCv: "Descargar CV",
     contactMe: "Contáctame",
+    photoAlt: "Retrato de Sergio Jover Penalva",
   },
   about: {
     heading: "Sobre mí",

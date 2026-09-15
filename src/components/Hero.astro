@@ -1,27 +1,33 @@
 ---
-import type { Content } from "../i18n/content";
+import type { Content, Lang } from "../i18n/content";
 
 interface Props {
+  lang: Lang;
   hero: Content["hero"];
   cvHref: string;
 }
 
-const { hero, cvHref } = Astro.props;
+const { lang, hero, cvHref } = Astro.props;
 ---
 
 <section class="hero wrapper">
-  <h1 class="hero__name">{hero.name}</h1>
-  <p class="hero__title">{hero.title}</p>
-  <p class="hero__location">{hero.location}</p>
-  <ul class="hero__availability">
-    {hero.availability.map((item) => <li>{item}</li>)}
-  </ul>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href={cvHref} download>
-      {hero.downloadCv}
-    </a>
-    <a class="btn btn--secondary" href="#contact">
-      {hero.contactMe}
-    </a>
+  <div class="hero__layout">
+    <div class="hero__content">
+      <h1 class="hero__name">{hero.name}</h1>
+      <p class="hero__title">{hero.title}</p>
+      <p class="hero__location">{hero.location}</p>
+      <ul class="hero__availability">
+        {hero.availability.map((item) => <li>{item}</li>)}
+      </ul>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href={cvHref} download>
+          {hero.downloadCv}
+        </a>
+        <a class="btn btn--secondary" href={`#contact-${lang}`}>
+          {hero.contactMe}
+        </a>
+      </div>
+    </div>
+    <img class="hero__photo" src="/profile.png" alt={hero.photoAlt} width="160" height="160" />
   </div>
 </section>

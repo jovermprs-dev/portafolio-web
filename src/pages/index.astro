@@ -26,7 +26,7 @@ const cvHrefByLang: Record<Lang, string> = {
         <div data-lang-section={lang}>
           <Nav lang={lang} nav={data.nav} />
           <main>
-            <Hero hero={data.hero} cvHref={cvHrefByLang[lang]} />
+            <Hero lang={lang} hero={data.hero} cvHref={cvHrefByLang[lang]} />
             <About lang={lang} about={data.about} />
             <Experience lang={lang} experience={data.experience} />
             <Skills lang={lang} skills={data.skills} />
