@@ -51,27 +51,29 @@ These are default recommendations to keep momentum — any of them can be change
 **Goal of this phase:** have the portal infrastructure ready and proven with a sample container, so adding each real project later is just "follow the template."
 
 ### 2.1 Base infrastructure
-- [ ] Provision the VPS (Hetzner CX22 or similar; start with 4GB RAM if several Spring Boot apps will run at once)
-- [ ] Harden basic security: non-root user, SSH key-only auth, firewall (ufw), fail2ban
-- [ ] Install Docker and Docker Compose on the VPS
+- [x] Provision the VPS — Hetzner CX23 (2 vCPU / 4GB RAM), Ubuntu 24.04, `116.203.225.167`
+- [x] Harden basic security: non-root user (`sergio`, sudo via SSH key only), root login and password auth disabled, `ufw` (22/80/443 only), `fail2ban` on sshd
+- [x] Install Docker and Docker Compose on the VPS
 - [ ] Set up automatic VPS backups (Hetzner snapshots, or `restic`/`borgbackup` to an external bucket) — decide this **before** any project holds real user data (e.g. restaurant reservations)
 - [ ] Install basic uptime monitoring (Uptime Kuma in its own container, or an external service like UptimeRobot)
 
 ### 2.2 Reverse proxy and subdomains
-- [ ] Install Traefik as a reverse proxy
-- [ ] Configure Traefik to issue automatic HTTPS certificates via Let's Encrypt
-- [ ] Protect the Traefik dashboard (basic auth, or disable it in production — never leave it exposed without a password)
-- [ ] Create a wildcard DNS record (`*.your-domain.com`) in Cloudflare pointing to the VPS, so subdomains can be added without touching DNS each time
-- [ ] Test with a "hello world" container (e.g. a plain Nginx image) on `test.your-domain.com` to confirm the whole chain (DNS → Traefik → container → HTTPS) works
+- [x] Install Traefik as a reverse proxy — `~/traefik/docker-compose.yml` on the VPS, Traefik v3.5
+- [x] Configure Traefik to issue automatic HTTPS certificates via Let's Encrypt — HTTP challenge, working
+- [x] Protect the Traefik dashboard — basic auth (`admin` + generated password), served at `traefik.sergiojover.dev`
+- [x] Create a wildcard DNS record (`*.sergiojover.dev`) in Cloudflare pointing to the VPS
+- [x] Test with a "hello world" container on `test.sergiojover.dev` — confirmed the whole chain (DNS → Traefik → container → HTTPS) works, then torn down
+
+**Note:** the VPS's Docker Engine is pinned to `28.5.2` (`apt-mark hold`) — the very latest Docker release (29.x) raised its minimum supported API version in a way Traefik v3.5's Docker provider doesn't negotiate correctly yet. Re-evaluate the hold once Traefik catches up.
 
 ### 2.3 Reusable template
-- [ ] Create a `docker-compose.yml` template with Traefik labels already set up (backend + frontend, plus a database if applicable)
-- [ ] Include an environment-variable/secrets pattern in the template (`.env` outside git, or Docker secrets) to avoid leaking credentials into the repo
-- [ ] Decide on a deployment strategy: manual (`docker compose pull && up -d` over SSH), or simple CI/CD (a GitHub Actions workflow that SSHes into the VPS on every push to `main`)
-- [ ] Document the exact steps for adding a new project in its own README (so it doesn't need to be figured out from scratch each time)
+- [x] Create a `docker-compose.yml` template with Traefik labels already set up (backend + frontend, plus a database if applicable) — [infra/project-template/](./infra/project-template/)
+- [x] Include an environment-variable/secrets pattern in the template — `.env.example`, real `.env` stays on the VPS only, never committed
+- [x] Decide on a deployment strategy — manual over SSH for now (`docker compose pull && up -d`); move to GitHub Actions once more than one project needs regular deploys
+- [x] Document the exact steps for adding a new project in its own README — [infra/README.md](./infra/README.md)
 
 ### 2.4 Linking back to the portfolio
-- [ ] Add a "Projects" section to the portfolio site with empty/"coming soon" cards, with the visual structure already in place to link out as soon as you deploy the first one
+- [x] Add a "Projects" section to the portfolio site with empty/"coming soon" cards — done in Phase 1.2, already live
 
 **✅ End of Phase 2:** the VPS runs Docker + Traefik with backups and basic monitoring, a test subdomain responds correctly over HTTPS, and there's a clear template (with secrets handling) for adding any project in minutes.
 

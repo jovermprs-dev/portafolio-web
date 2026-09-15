@@ -1,0 +1,49 @@
+services:
+  backend:
+    image: ${REGISTRY}/${PROJECT_NAME}-backend:${TAG:-latest}
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - web
+      - internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${PROJECT_NAME}-api.rule=Host(`api.${SUBDOMAIN}.sergiojover.dev`)"
+      - "traefik.http.routers.${PROJECT_NAME}-api.entrypoints=websecure"
+      - "traefik.http.routers.${PROJECT_NAME}-api.tls.certresolver=letsencrypt"
+      - "traefik.http.services.${PROJECT_NAME}-api.loadbalancer.server.port=8080"
+
+  frontend:
+    image: ${REGISTRY}/${PROJECT_NAME}-frontend:${TAG:-latest}
+    restart: unless-stopped
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${PROJECT_NAME}.rule=Host(`${SUBDOMAIN}.sergiojover.dev`)"
+      - "traefik.http.routers.${PROJECT_NAME}.entrypoints=websecure"
+      - "traefik.http.routers.${PROJECT_NAME}.tls.certresolver=letsencrypt"
+      - "traefik.http.services.${PROJECT_NAME}.loadbalancer.server.port=80"
+
+  # Remove this service if the project doesn't need its own database.
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - internal
+
+networks:
+  # Shared with Traefik — do not remove `external: true`.
+  web:
+    external: true
+  # Backend <-> db only; never exposed to Traefik.
+  internal:
+
+volumes:
+  db-data:
