@@ -1,98 +1,98 @@
-# Roadmap: Portafolio + Portal de Proyectos
+# Roadmap: Portfolio + Project Portal
 
-## Decisiones abiertas (con recomendación)
+## Open decisions (with recommendation)
 
-| Decisión | Recomendación | Por qué |
+| Decision | Recommendation | Why |
 |---|---|---|
-| Stack portafolio | **Astro** | Contenido mayormente estático (CV, secciones fijas). Astro genera HTML puro por defecto, carga instantánea, y permite "islas" de React/Vue si luego quieres algo interactivo puntual. Next.js solo compensa si planeas rutas dinámicas, API routes o SSR — no es el caso todavía. |
-| Registrador de dominio | **Cloudflare Registrar** | Precio a coste (sin margen), y ya vas a mover el DNS a Cloudflare, así queda todo en un sitio. Namecheap es válido si Cloudflare no tiene la extensión que quieres. |
-| Hosting del portafolio | **Vercel** | Mejor integración con Astro/Next, previews automáticos por PR, gratis en el tier hobby. Netlify es intercambiable si prefieres. |
-| VPS | **Hetzner CX22 (4GB)** | Confirmado en el roadmap original. Suficiente para Traefik + 2-3 Spring Boot pequeños. Si vas a tener 4+ proyectos activos a la vez, valora CX32. |
-| Analítica | **Umami o Plausible self-hosted** (o ninguna al principio) | Google Analytics implica banner de cookies obligatorio en España/UE. Umami/Plausible son "cookieless" y puedes alojarlos tú mismo en el VPS de la Fase 2, evitando el aviso de cookies. |
-| Formulario de contacto | **Resend o Formspree** (sin backend propio) | Evita montar un servicio solo para un formulario. Resend tiene buen tier gratuito y API simple; se integra bien con Astro. |
+| Portfolio stack | **Astro** | Content is mostly static (CV, fixed sections). Astro ships plain HTML by default, loads instantly, and supports React/Vue "islands" later if you need interactivity in one spot. Next.js only pays off if you need dynamic routes, API routes, or SSR — not the case yet. |
+| Domain registrar | **Cloudflare Registrar** | At-cost pricing (no markup), and since DNS is moving to Cloudflare anyway, everything stays in one place. Namecheap works if Cloudflare doesn't carry the TLD you want. |
+| Portfolio hosting | **Vercel** | Best integration with Astro/Next, automatic PR previews, free on the hobby tier. Netlify is interchangeable if you prefer it. |
+| VPS | **Hetzner CX22 (4GB)** | Confirmed from the original plan. Enough for Traefik + 2-3 small Spring Boot apps. If you'll run 4+ projects at once, consider CX32. |
+| Analytics | **Umami or Plausible, self-hosted** (or none at first) | Google Analytics requires a mandatory cookie banner in Spain/EU. Umami/Plausible are cookieless and can be self-hosted on the Phase 2 VPS, avoiding the cookie notice. |
+| Contact form | **Resend or Formspree** (no custom backend) | Avoids standing up a service just for a form. Resend has a solid free tier and a simple API; integrates well with Astro. |
 
-Estas son recomendaciones por defecto para no bloquear el avance — cualquiera se puede cambiar sin romper el resto del plan.
-
----
-
-## Fase 1 — Portafolio funcionando en el dominio
-
-**Objetivo de esta fase:** tener tu-dominio.com en vivo con tu CV, aunque el portal de proyectos todavía no exista.
-
-### 1.1 Dominio y DNS
-- [ ] Decidir el nombre de dominio (tu nombre, variante corta, o algo tipo `sergiodev.xyz`)
-- [ ] Comprarlo en Cloudflare Registrar (o Namecheap si la extensión no está disponible ahí)
-- [ ] Mover la gestión DNS a Cloudflare (gratis, aunque el dominio esté registrado en otro sitio)
-- [ ] Activar "Always Use HTTPS" y SSL/TLS modo "Full (strict)" en Cloudflare desde el principio
-- [ ] Verificar que el dominio resuelve (aunque sea a una página en blanco)
-
-### 1.2 Construcción del portafolio
-- [ ] Elegir stack: **Astro** (recomendado) o Next.js si prevés interactividad seria a corto plazo
-- [ ] Definir secciones: Hero/presentación, Sobre mí, Experiencia (Inetum, etc.), Skills técnicos, Proyectos (con enlaces, aunque de momento apunten "próximamente"), Contacto/CV descargable
-- [ ] Maquetar y dar estilo (puedes apoyarte en un template y personalizarlo)
-- [ ] Añadir tu CV en PDF descargable
-- [ ] SEO básico: `<title>`/meta description por página, Open Graph/Twitter cards (para que se vea bien al compartir el link), `sitemap.xml`, `robots.txt`, favicon
-- [ ] Formulario de contacto (Resend/Formspree) o al menos un `mailto:` + enlaces a LinkedIn/GitHub
-- [ ] Comprobar accesibilidad mínima (contraste, alt en imágenes, navegación por teclado) y rendimiento (Lighthouse ≥ 90)
-
-### 1.3 Despliegue
-- [ ] Crear cuenta en Vercel (o Netlify)
-- [ ] Conectar el repo de GitHub del portafolio (deploy automático en cada push)
-- [ ] Apuntar el dominio (registro DNS tipo CNAME/A según el proveedor) al despliegue
-- [ ] Verificar HTTPS activo (automático en Vercel/Netlify)
-- [ ] Si usas analítica cookieless (Umami/Plausible), añadir el script de tracking; si no, dejarlo para la Fase 2 cuando el VPS ya exista
-
-**✅ Fin de la Fase 1:** tu-dominio.com muestra tu CV completo, en HTTPS, con despliegue automático desde GitHub, SEO básico correcto y una forma de contactarte.
+These are default recommendations to keep momentum — any of them can be changed without breaking the rest of the plan.
 
 ---
 
-## Fase 2 — Dejar el espacio del portal preparado (sin proyectos aún)
+## Phase 1 — Portfolio live on the domain
 
-**Objetivo de esta fase:** tener la infraestructura del portal lista y probada con un contenedor de ejemplo, para que añadir cada proyecto real después sea solo "seguir la plantilla".
+**Goal of this phase:** have your-domain.com live with your CV, even before the project portal exists.
 
-### 2.1 Infraestructura base
-- [ ] Contratar el VPS (Hetzner CX22 o similar, empezar con 4GB RAM si vas a tener varios Spring Boot activos)
-- [ ] Endurecer seguridad básica: usuario no-root, SSH solo con clave, firewall (ufw), fail2ban
-- [ ] Instalar Docker y Docker Compose en el VPS
-- [ ] Configurar backups automáticos del VPS (snapshots de Hetzner, o `restic`/`borgbackup` a un bucket externo) — decidir esto **antes** de tener datos reales de usuarios (ej. reservas de restaurante)
-- [ ] Instalar un monitor básico de uptime (Uptime Kuma en un contenedor propio, o un servicio externo tipo UptimeRobot)
+### 1.1 Domain and DNS
+- [ ] Decide on the domain name (your name, a short variant, or something like `sergiodev.xyz`)
+- [ ] Buy it via Cloudflare Registrar (or Namecheap if the TLD isn't available there)
+- [ ] Move DNS management to Cloudflare (free, even if the domain is registered elsewhere)
+- [ ] Enable "Always Use HTTPS" and SSL/TLS mode "Full (strict)" in Cloudflare from the start
+- [ ] Verify the domain resolves (even to a blank page)
 
-### 2.2 Reverse proxy y subdominios
-- [ ] Instalar Traefik como reverse proxy
-- [ ] Configurar Traefik para emitir certificados HTTPS automáticos vía Let's Encrypt
-- [ ] Proteger el dashboard de Traefik (auth básica o desactivarlo en producción; no dejarlo expuesto sin contraseña)
-- [ ] Crear en Cloudflare un registro DNS comodín (`*.tu-dominio.com`) apuntando al VPS, para poder dar de alta subdominios sin tocar DNS cada vez
-- [ ] Probar con un contenedor "hola mundo" (ej. una imagen Nginx simple) en `test.tu-dominio.com` para confirmar que todo el circuito (DNS → Traefik → contenedor → HTTPS) funciona
+### 1.2 Building the portfolio
+- [ ] Choose stack: **Astro** (recommended), or Next.js if serious interactivity is coming soon
+- [ ] Define sections: Hero/intro, About me, Experience (Inetum, etc.), Technical skills, Projects (with links, "coming soon" for now), Contact/downloadable CV
+- [ ] Layout and styling (a template you customize is fine)
+- [ ] Add a downloadable CV in PDF
+- [ ] Basic SEO: per-page `<title>`/meta description, Open Graph/Twitter cards (so it looks good when shared), `sitemap.xml`, `robots.txt`, favicon
+- [ ] Contact form (Resend/Formspree), or at least a `mailto:` plus LinkedIn/GitHub links
+- [ ] Check minimum accessibility (contrast, image alt text, keyboard navigation) and performance (Lighthouse ≥ 90)
 
-### 2.3 Plantilla reutilizable
-- [ ] Crear una plantilla de `docker-compose.yml` con las etiquetas de Traefik ya preparadas (backend + frontend +, si aplica, base de datos)
-- [ ] Incluir en la plantilla un patrón de variables de entorno / secrets (`.env` fuera de git, o Docker secrets) para no filtrar credenciales en el repo
-- [ ] Definir estrategia de despliegue: manual (`docker compose pull && up -d` por SSH) o CI/CD simple (GitHub Actions que hace SSH al VPS en cada push a `main`)
-- [ ] Documentar en un README propio los pasos exactos para añadir un proyecto nuevo (para no tener que pensarlo cada vez)
+### 1.3 Deployment
+- [ ] Create a Vercel account (or Netlify)
+- [ ] Connect the portfolio's GitHub repo (automatic deploy on every push)
+- [ ] Point the domain (CNAME/A record depending on the provider) at the deployment
+- [ ] Verify HTTPS is active (automatic on Vercel/Netlify)
+- [ ] If using cookieless analytics (Umami/Plausible), add the tracking script; otherwise leave it for Phase 2 once the VPS exists
 
-### 2.4 Enlace con el portafolio
-- [ ] Añadir en la web del portafolio una sección "Proyectos" con tarjetas vacías o "próximamente", ya con la estructura visual lista para enlazar en cuanto despliegues el primero
-
-**✅ Fin de la Fase 2:** el VPS tiene Docker + Traefik funcionando con backups y monitorización básica, un subdominio de prueba responde correctamente en HTTPS, y existe una plantilla clara (con manejo de secrets) para añadir cualquier proyecto en minutos.
-
----
-
-## Fase 3 (futura, esbozo)
-
-Dockerizar y desplegar cada proyecto real siguiendo la plantilla de la Fase 2.3:
-
-1. Empezar por un proyecto ya terminado, como caso de prueba de la plantilla end-to-end.
-2. Añadir el de reservas de restaurante cuando esté listo — este maneja datos de usuarios reales, así que antes de publicarlo conviene tener resueltos: backups de la base de datos, y un aviso legal + política de privacidad básica en el portafolio (obligatorio en España/UE en cuanto se recogen datos personales, aunque sea solo un nombre y teléfono).
-3. Enlazar cada proyecto desde la sección "Proyectos" del portafolio (sustituyendo las tarjetas "próximamente" de la Fase 1.2/2.4).
+**✅ End of Phase 1:** your-domain.com shows your full CV, over HTTPS, with automatic deployment from GitHub, correct basic SEO, and a way to contact you.
 
 ---
 
-## Notas de coste estimado (orientativo)
+## Phase 2 — Prepare the portal's foundation (no projects yet)
 
-- Dominio: ~8-15 €/año según extensión
-- Vercel/Netlify (tier hobby): 0 €
-- Cloudflare (DNS + registrar): 0 € de gestión, coste = precio del dominio
-- Hetzner CX22: ~4-5 €/mes
-- Resend (tier gratuito, formulario contacto): 0 € hasta 3.000 emails/mes
+**Goal of this phase:** have the portal infrastructure ready and proven with a sample container, so adding each real project later is just "follow the template."
 
-Total aproximado para tener todo en marcha (Fases 1+2): **~5 €/mes + el coste anual del dominio**.
+### 2.1 Base infrastructure
+- [ ] Provision the VPS (Hetzner CX22 or similar; start with 4GB RAM if several Spring Boot apps will run at once)
+- [ ] Harden basic security: non-root user, SSH key-only auth, firewall (ufw), fail2ban
+- [ ] Install Docker and Docker Compose on the VPS
+- [ ] Set up automatic VPS backups (Hetzner snapshots, or `restic`/`borgbackup` to an external bucket) — decide this **before** any project holds real user data (e.g. restaurant reservations)
+- [ ] Install basic uptime monitoring (Uptime Kuma in its own container, or an external service like UptimeRobot)
+
+### 2.2 Reverse proxy and subdomains
+- [ ] Install Traefik as a reverse proxy
+- [ ] Configure Traefik to issue automatic HTTPS certificates via Let's Encrypt
+- [ ] Protect the Traefik dashboard (basic auth, or disable it in production — never leave it exposed without a password)
+- [ ] Create a wildcard DNS record (`*.your-domain.com`) in Cloudflare pointing to the VPS, so subdomains can be added without touching DNS each time
+- [ ] Test with a "hello world" container (e.g. a plain Nginx image) on `test.your-domain.com` to confirm the whole chain (DNS → Traefik → container → HTTPS) works
+
+### 2.3 Reusable template
+- [ ] Create a `docker-compose.yml` template with Traefik labels already set up (backend + frontend, plus a database if applicable)
+- [ ] Include an environment-variable/secrets pattern in the template (`.env` outside git, or Docker secrets) to avoid leaking credentials into the repo
+- [ ] Decide on a deployment strategy: manual (`docker compose pull && up -d` over SSH), or simple CI/CD (a GitHub Actions workflow that SSHes into the VPS on every push to `main`)
+- [ ] Document the exact steps for adding a new project in its own README (so it doesn't need to be figured out from scratch each time)
+
+### 2.4 Linking back to the portfolio
+- [ ] Add a "Projects" section to the portfolio site with empty/"coming soon" cards, with the visual structure already in place to link out as soon as you deploy the first one
+
+**✅ End of Phase 2:** the VPS runs Docker + Traefik with backups and basic monitoring, a test subdomain responds correctly over HTTPS, and there's a clear template (with secrets handling) for adding any project in minutes.
+
+---
+
+## Phase 3 (future, outline)
+
+Dockerize and deploy each real project following the Phase 2.3 template:
+
+1. Start with an already-finished project as an end-to-end test case for the template.
+2. Add the restaurant reservation project once it's ready — it handles real user data, so before publishing it, make sure the following are in place: database backups, and a basic legal notice + privacy policy on the portfolio (mandatory in Spain/EU as soon as personal data is collected, even just a name and phone number).
+3. Link each project from the portfolio's "Projects" section (replacing the "coming soon" cards from Phase 1.2/2.4).
+
+---
+
+## Estimated cost notes (approximate)
+
+- Domain: ~€8-15/year depending on the TLD
+- Vercel/Netlify (hobby tier): €0
+- Cloudflare (DNS + registrar): €0 management fee, cost = domain price
+- Hetzner CX22: ~€4-5/month
+- Resend (free tier, contact form): €0 up to 3,000 emails/month
+
+Approximate total to have everything running (Phases 1+2): **~€5/month + the domain's annual cost**.
