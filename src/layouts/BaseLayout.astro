@@ -31,12 +31,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
     <!--
       Set the language before first paint to avoid a flash of the wrong
-      language, and to restore the visitor's previous choice.
+      language: reuse the visitor's previous explicit choice, or fall back
+      to their browser/OS language on the first visit.
     -->
     <script is:inline>
       (function () {
         var stored = localStorage.getItem("lang");
-        var lang = stored === "es" ? "es" : "en";
+        var lang;
+        if (stored === "es" || stored === "en") {
+          lang = stored;
+        } else {
+          var browserLang = (navigator.language || "en").toLowerCase();
+          lang = browserLang.indexOf("es") === 0 ? "es" : "en";
+        }
         document.documentElement.setAttribute("lang", lang);
         document.documentElement.setAttribute("data-lang", lang);
       })();

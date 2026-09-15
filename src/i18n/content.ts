@@ -42,6 +42,7 @@ export interface Content {
     skills: string;
     projects: string;
     contact: string;
+    /** Accessible label for the EN/ES switch (its visible content is just the two flags). */
     langSwitchLabel: string;
   };
   hero: {
@@ -100,7 +101,7 @@ const en: Content = {
     skills: "Skills",
     projects: "Projects",
     contact: "Contact",
-    langSwitchLabel: "ES",
+    langSwitchLabel: "English / Spanish language switch",
   },
   hero: {
     name: "Sergio Jover Penalva",
@@ -167,7 +168,18 @@ const en: Content = {
       },
       {
         label: "Data, testing & tools",
-        items: ["Oracle", "SQL", "Jest", "JUnit 5", "Liquibase", "Git", "Scrum"],
+        items: [
+          "Oracle",
+          "SQL",
+          "Jest",
+          "JUnit 5",
+          "Liquibase",
+          "Git",
+          "Scrum",
+          "Jira",
+          "Jenkins",
+          "SonarQube",
+        ],
       },
     ],
   },
@@ -223,7 +235,7 @@ const es: Content = {
     skills: "Skills",
     projects: "Proyectos",
     contact: "Contacto",
-    langSwitchLabel: "EN",
+    langSwitchLabel: "Selector de idioma inglés / español",
   },
   hero: {
     name: "Sergio Jover Penalva",
@@ -290,7 +302,18 @@ const es: Content = {
       },
       {
         label: "Datos, testing y herramientas",
-        items: ["Oracle", "SQL", "Jest", "JUnit 5", "Liquibase", "Git", "Scrum"],
+        items: [
+          "Oracle",
+          "SQL",
+          "Jest",
+          "JUnit 5",
+          "Liquibase",
+          "Git",
+          "Scrum",
+          "Jira",
+          "Jenkins",
+          "SonarQube",
+        ],
       },
     ],
   },

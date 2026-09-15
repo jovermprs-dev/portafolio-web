@@ -18,8 +18,19 @@ const { lang, nav } = Astro.props;
       <li><a href="#projects">{nav.projects}</a></li>
       <li><a href="#contact">{nav.contact}</a></li>
     </ul>
-    <button type="button" class="lang-toggle" data-lang-toggle data-current-lang={lang}>
-      {nav.langSwitchLabel}
+    <button
+      type="button"
+      class="lang-switch"
+      data-lang-toggle
+      role="switch"
+      aria-checked={lang === "es"}
+      aria-label={nav.langSwitchLabel}
+    >
+      <span class="lang-switch__flag" aria-hidden="true">🇬🇧</span>
+      <span class="lang-switch__track">
+        <span class="lang-switch__thumb"></span>
+      </span>
+      <span class="lang-switch__flag" aria-hidden="true">🇪🇸</span>
     </button>
   </div>
 </header>

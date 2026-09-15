@@ -83,21 +83,49 @@ html[data-lang="es"] [data-lang-section="es"] {
   color: var(--color-text);
 }
 
-.lang-toggle {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  border-radius: 999px;
-  padding: 0.4rem 0.9rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  letter-spacing: 0.03em;
 }
 
-.lang-toggle:hover {
+.lang-switch__flag {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.lang-switch__track {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  transition: border-color 0.15s ease;
+}
+
+.lang-switch:hover .lang-switch__track {
   border-color: var(--color-accent);
-  color: var(--color-accent);
+}
+
+.lang-switch__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transition: transform 0.2s ease;
+}
+
+/* The switch sits to the right (Spanish side) once the page is in Spanish. */
+html[data-lang="es"] .lang-switch__thumb {
+  transform: translateX(20px);
 }
 
 /* Sections */
