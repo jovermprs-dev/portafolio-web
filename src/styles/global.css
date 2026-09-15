@@ -428,6 +428,75 @@ section h2 {
   margin: 1.5rem 0 2rem;
 }
 
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 32rem;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-form__field label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.contact-form__field input,
+.contact-form__field textarea {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 0.65rem 0.85rem;
+  color: var(--color-text);
+  font: inherit;
+  resize: vertical;
+}
+
+.contact-form__field input:focus,
+.contact-form__field textarea:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.contact-form__honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.contact-form .btn {
+  align-self: flex-start;
+  border: none;
+  cursor: pointer;
+}
+
+.contact-form .btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.contact-form__status {
+  margin: 0;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+}
+
+.contact-form__status--success {
+  color: var(--color-accent);
+}
+
+.contact-form__status--error {
+  color: #f87171;
+}
+
 /* Footer */
 footer {
   border-top: 1px solid var(--color-border);

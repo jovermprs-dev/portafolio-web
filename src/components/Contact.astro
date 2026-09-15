@@ -24,4 +24,35 @@ const { lang, contact } = Astro.props;
       {contact.githubLabel}
     </a>
   </div>
+
+  <form
+    class="contact-form"
+    data-contact-form
+    data-submit-label={contact.form.submit}
+    data-submitting-label={contact.form.submitting}
+    data-success-message={contact.form.successMessage}
+    data-error-message={contact.form.errorMessage}
+  >
+    <div class="contact-form__field">
+      <label for={`name-${lang}`}>{contact.form.nameLabel}</label>
+      <input type="text" id={`name-${lang}`} name="name" autocomplete="name" required />
+    </div>
+    <div class="contact-form__field">
+      <label for={`email-${lang}`}>{contact.form.emailLabel}</label>
+      <input type="email" id={`email-${lang}`} name="email" autocomplete="email" required />
+    </div>
+    <div class="contact-form__field">
+      <label for={`message-${lang}`}>{contact.form.messageLabel}</label>
+      <textarea id={`message-${lang}`} name="message" rows="5" required></textarea>
+    </div>
+
+    <!-- Honeypot: hidden from real visitors, catches basic bots. -->
+    <div class="contact-form__honeypot" aria-hidden="true">
+      <label for={`company-${lang}`}>Company</label>
+      <input type="text" id={`company-${lang}`} name="company" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button type="submit" class="btn btn--primary">{contact.form.submit}</button>
+    <p class="contact-form__status" data-contact-status role="status" aria-live="polite"></p>
+  </form>
 </section>

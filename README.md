@@ -1,6 +1,6 @@
 # Portfolio — Sergio Jover Penalva
 
-Personal portfolio site built with [Astro](https://astro.build). Bilingual (English/Spanish, client-side toggle, no page reload), static output, deployed on Vercel.
+Personal portfolio site built with [Astro](https://astro.build). Bilingual (English/Spanish, client-side toggle, no page reload), mostly static output (the page is prerendered), deployed on Vercel with one serverless API route for the contact form.
 
 See [ROADMAP.md](./ROADMAP.md) for the full project plan (domain, deployment, and the future project portal on a VPS).
 
@@ -16,10 +16,24 @@ See [ROADMAP.md](./ROADMAP.md) for the full project plan (domain, deployment, an
 │   ├── components/        # One component per page section
 │   ├── i18n/content.ts    # All page copy, in English and Spanish
 │   ├── layouts/BaseLayout.astro
-│   └── pages/index.astro  # Renders both language versions; CSS + a
-│                           # tiny inline script toggle which one is visible
+│   ├── pages/index.astro  # Renders both language versions; CSS + a
+│   │                       # tiny inline script toggle which one is visible
+│   └── pages/api/contact.ts  # Serverless endpoint, sends form submissions via Resend
 └── astro.config.mjs
 ```
+
+### Contact form
+
+`src/pages/api/contact.ts` validates the submission (including a honeypot
+field) and sends it through [Resend](https://resend.com). It needs a
+`RESEND_API_KEY` environment variable:
+
+- Locally: copy `.env.example` to `.env` and fill in the key.
+- On Vercel: `Project Settings → Environment Variables` (or `vercel env add
+  RESEND_API_KEY`), for both Production and Preview.
+
+Without the key, submissions fail with a clear error message instead of the
+build breaking.
 
 ### How the language toggle works
 

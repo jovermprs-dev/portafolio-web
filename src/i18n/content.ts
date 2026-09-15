@@ -84,6 +84,15 @@ export interface Content {
     emailLabel: string;
     linkedinLabel: string;
     githubLabel: string;
+    form: {
+      nameLabel: string;
+      emailLabel: string;
+      messageLabel: string;
+      submit: string;
+      submitting: string;
+      successMessage: string;
+      errorMessage: string;
+    };
   };
   footer: {
     text: string;
@@ -219,6 +228,15 @@ const en: Content = {
     emailLabel: "Email",
     linkedinLabel: "LinkedIn",
     githubLabel: "GitHub",
+    form: {
+      nameLabel: "Name",
+      emailLabel: "Email",
+      messageLabel: "Message",
+      submit: "Send message",
+      submitting: "Sending…",
+      successMessage: "Thanks! Your message has been sent — I'll get back to you soon.",
+      errorMessage: "Something went wrong. Please try again, or email me directly.",
+    },
   },
   footer: {
     text: "Built with Astro.",
@@ -354,6 +372,15 @@ const es: Content = {
     emailLabel: "Email",
     linkedinLabel: "LinkedIn",
     githubLabel: "GitHub",
+    form: {
+      nameLabel: "Nombre",
+      emailLabel: "Email",
+      messageLabel: "Mensaje",
+      submit: "Enviar mensaje",
+      submitting: "Enviando…",
+      successMessage: "¡Gracias! Tu mensaje se ha enviado — te responderé pronto.",
+      errorMessage: "Algo ha fallado. Inténtalo de nuevo, o escríbeme directamente por email.",
+    },
   },
   footer: {
     text: "Construido con Astro.",
