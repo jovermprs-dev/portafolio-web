@@ -20,7 +20,7 @@ These are default recommendations to keep momentum — any of them can be change
 **Goal of this phase:** have your-domain.com live with your CV, even before the project portal exists.
 
 ### 1.1 Domain and DNS
-- [ ] Decide on the domain name (your name, a short variant, or something like `sergiodev.xyz`)
+- [x] Decide on the domain name — **`sergiojover.dev`**
 - [ ] Buy it via Cloudflare Registrar (or Namecheap if the TLD isn't available there)
 - [ ] Move DNS management to Cloudflare (free, even if the domain is registered elsewhere)
 - [ ] Enable "Always Use HTTPS" and SSL/TLS mode "Full (strict)" in Cloudflare from the start

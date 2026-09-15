@@ -2,8 +2,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// TODO: update once the real domain is purchased (see ROADMAP.md, Phase 1.1)
-const SITE_URL = 'https://sergiojoverpenalva.com';
+const SITE_URL = 'https://sergiojover.dev';
 
 // https://astro.build/config
 export default defineConfig({
