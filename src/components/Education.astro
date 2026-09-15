@@ -1,14 +1,15 @@
 ---
-import type { Content } from "../i18n/content";
+import type { Content, Lang } from "../i18n/content";
 
 interface Props {
+  lang: Lang;
   education: Content["education"];
 }
 
-const { education } = Astro.props;
+const { lang, education } = Astro.props;
 ---
 
-<section id="education" class="education wrapper">
+<section id={`education-${lang}`} class="education wrapper">
   <h2>{education.heading}</h2>
   {
     education.entries.map((entry) => (

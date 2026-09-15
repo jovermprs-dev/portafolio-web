@@ -1,14 +1,15 @@
 ---
-import type { Content } from "../i18n/content";
+import type { Content, Lang } from "../i18n/content";
 
 interface Props {
+  lang: Lang;
   projects: Content["projects"];
 }
 
-const { projects } = Astro.props;
+const { lang, projects } = Astro.props;
 ---
 
-<section id="projects" class="projects wrapper">
+<section id={`projects-${lang}`} class="projects wrapper">
   <h2>{projects.heading}</h2>
   <p class="projects__subheading">{projects.subheading}</p>
   <div class="projects__grid">

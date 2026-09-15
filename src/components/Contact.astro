@@ -1,15 +1,16 @@
 ---
-import type { Content } from "../i18n/content";
+import type { Content, Lang } from "../i18n/content";
 import { contactInfo } from "../i18n/content";
 
 interface Props {
+  lang: Lang;
   contact: Content["contact"];
 }
 
-const { contact } = Astro.props;
+const { lang, contact } = Astro.props;
 ---
 
-<section id="contact" class="contact wrapper">
+<section id={`contact-${lang}`} class="contact wrapper">
   <h2>{contact.heading}</h2>
   <p>{contact.paragraph}</p>
   <div class="contact__links">

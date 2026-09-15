@@ -1,14 +1,15 @@
 ---
-import type { Content } from "../i18n/content";
+import type { Content, Lang } from "../i18n/content";
 
 interface Props {
+  lang: Lang;
   experience: Content["experience"];
 }
 
-const { experience } = Astro.props;
+const { lang, experience } = Astro.props;
 ---
 
-<section id="experience" class="experience wrapper">
+<section id={`experience-${lang}`} class="experience wrapper">
   <h2>{experience.heading}</h2>
   {
     experience.entries.map((entry) => (
