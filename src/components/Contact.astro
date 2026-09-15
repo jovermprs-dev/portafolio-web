@@ -1,0 +1,26 @@
+---
+import type { Content } from "../i18n/content";
+import { contactInfo } from "../i18n/content";
+
+interface Props {
+  contact: Content["contact"];
+}
+
+const { contact } = Astro.props;
+---
+
+<section id="contact" class="contact wrapper">
+  <h2>{contact.heading}</h2>
+  <p>{contact.paragraph}</p>
+  <div class="contact__links">
+    <a class="btn btn--secondary" href={`mailto:${contactInfo.email}`}>
+      {contact.emailLabel}
+    </a>
+    <a class="btn btn--secondary" href={contactInfo.linkedin} target="_blank" rel="noopener noreferrer">
+      {contact.linkedinLabel}
+    </a>
+    <a class="btn btn--secondary" href={contactInfo.github} target="_blank" rel="noopener noreferrer">
+      {contact.githubLabel}
+    </a>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+---
+import type { Content } from "../i18n/content";
+
+interface Props {
+  hero: Content["hero"];
+  cvHref: string;
+}
+
+const { hero, cvHref } = Astro.props;
+---
+
+<section class="hero wrapper">
+  <h1 class="hero__name">{hero.name}</h1>
+  <p class="hero__title">{hero.title}</p>
+  <p class="hero__location">{hero.location}</p>
+  <ul class="hero__availability">
+    {hero.availability.map((item) => <li>{item}</li>)}
+  </ul>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href={cvHref} download>
+      {hero.downloadCv}
+    </a>
+    <a class="btn btn--secondary" href="#contact">
+      {hero.contactMe}
+    </a>
+  </div>
+</section>

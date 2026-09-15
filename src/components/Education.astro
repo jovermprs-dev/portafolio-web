@@ -1,0 +1,26 @@
+---
+import type { Content } from "../i18n/content";
+
+interface Props {
+  education: Content["education"];
+}
+
+const { education } = Astro.props;
+---
+
+<section id="education" class="education wrapper">
+  <h2>{education.heading}</h2>
+  {
+    education.entries.map((entry) => (
+      <div class="education__entry">
+        <h3>{entry.title}</h3>
+        <p>
+          {entry.school} · {entry.period}
+        </p>
+      </div>
+    ))
+  }
+  <div class="languages">
+    <strong>{education.languagesLabel}:</strong> {education.languages.join(" · ")}
+  </div>
+</section>

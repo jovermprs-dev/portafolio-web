@@ -1,0 +1,42 @@
+---
+import type { Content } from "../i18n/content";
+
+interface Props {
+  experience: Content["experience"];
+}
+
+const { experience } = Astro.props;
+---
+
+<section id="experience" class="experience wrapper">
+  <h2>{experience.heading}</h2>
+  {
+    experience.entries.map((entry) => (
+      <article class="job">
+        <div class="job__header">
+          <p class="job__company">{entry.company}</p>
+          <p class="job__period">{entry.period}</p>
+        </div>
+        <p class="job__project">{entry.project}</p>
+        <p class="job__location">{entry.location}</p>
+        <ul class="job__roles">
+          {entry.jobs.map((job) => (
+            <li>
+              <strong>{job.role}</strong> — {job.period}
+            </li>
+          ))}
+        </ul>
+        <ul class="job__bullets">
+          {entry.bullets.map((bullet) => (
+            <li>{bullet}</li>
+          ))}
+        </ul>
+        <ul class="tag-list">
+          {entry.technologies.map((tech) => (
+            <li>{tech}</li>
+          ))}
+        </ul>
+      </article>
+    ))
+  }
+</section>

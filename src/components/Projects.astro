@@ -1,0 +1,25 @@
+---
+import type { Content } from "../i18n/content";
+
+interface Props {
+  projects: Content["projects"];
+}
+
+const { projects } = Astro.props;
+---
+
+<section id="projects" class="projects wrapper">
+  <h2>{projects.heading}</h2>
+  <p class="projects__subheading">{projects.subheading}</p>
+  <div class="projects__grid">
+    {
+      projects.cards.map((card) => (
+        <div class="project-card">
+          <span class="project-card__badge">{projects.comingSoon}</span>
+          <h3>{card.name}</h3>
+          <p>{card.description}</p>
+        </div>
+      ))
+    }
+  </div>
+</section>

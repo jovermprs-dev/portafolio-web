@@ -1,0 +1,373 @@
+:root {
+  --color-bg: #0b0d12;
+  --color-bg-alt: #12151c;
+  --color-surface: #171b24;
+  --color-border: #262b36;
+  --color-text: #e6e9f0;
+  --color-text-muted: #9aa3b2;
+  --color-accent: #6ee7b7;
+  --color-accent-strong: #34d399;
+  --max-width: 960px;
+  --radius: 12px;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+/* Language sections: only the active language is shown */
+[data-lang-section] {
+  display: none;
+}
+
+html[data-lang="en"] [data-lang-section="en"],
+html[data-lang="es"] [data-lang-section="es"] {
+  display: block;
+}
+
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Nav */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(11, 13, 18, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav__links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__links a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.15s ease;
+}
+
+.nav__links a:hover {
+  color: var(--color-text);
+}
+
+.lang-toggle {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+}
+
+.lang-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Sections */
+section {
+  padding: 4rem 0;
+}
+
+section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+/* Hero */
+.hero {
+  padding: 5rem 0 4rem;
+}
+
+.hero__name {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 0.5rem;
+}
+
+.hero__title {
+  color: var(--color-accent);
+  font-size: 1.15rem;
+  margin: 0 0 1rem;
+}
+
+.hero__location {
+  color: var(--color-text-muted);
+  margin: 0 0 1.5rem;
+}
+
+.hero__availability {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hero__availability li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #06251a;
+}
+
+.btn--secondary {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+/* About */
+.about p {
+  max-width: 68ch;
+  color: var(--color-text-muted);
+}
+
+/* Experience */
+.job {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.job__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.job__company {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.job__period {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.job__project {
+  color: var(--color-accent);
+  margin: 0 0 0.25rem;
+}
+
+.job__location {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.job__roles {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.job__roles li {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.job__roles strong {
+  color: var(--color-text);
+}
+
+.job__bullets {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+  color: var(--color-text-muted);
+}
+
+.job__bullets li {
+  margin-bottom: 0.5rem;
+}
+
+.tag-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-list li {
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* Skills */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.skills__group h3 {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+
+/* Education */
+.education__entry {
+  margin-bottom: 1rem;
+}
+
+.education__entry h3 {
+  margin: 0 0 0.2rem;
+  font-size: 1rem;
+}
+
+.education__entry p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.languages {
+  margin-top: 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Projects */
+.projects__subheading {
+  color: var(--color-text-muted);
+  margin-top: -1.25rem;
+  margin-bottom: 2rem;
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--color-surface);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.project-card__badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.project-card h3 {
+  margin: 0 0 0.5rem;
+  color: var(--color-text);
+}
+
+/* Contact */
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--color-border);
+  padding: 2rem 0;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .nav__links {
+    gap: 1rem;
+  }
+
+  .job__header {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Skills from "../components/Skills.astro";
+import Education from "../components/Education.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import { content, type Lang } from "../i18n/content";
+
+const languages: Lang[] = ["en", "es"];
+const cvHrefByLang: Record<Lang, string> = {
+  en: "/cv-en.pdf",
+  es: "/cv-es.pdf",
+};
+---
+
+<BaseLayout title={content.en.meta.title} description={content.en.meta.description}>
+  {
+    languages.map((lang) => {
+      const data = content[lang];
+      return (
+        <div data-lang-section={lang}>
+          <Nav lang={lang} nav={data.nav} />
+          <main>
+            <Hero hero={data.hero} cvHref={cvHrefByLang[lang]} />
+            <About about={data.about} />
+            <Experience experience={data.experience} />
+            <Skills skills={data.skills} />
+            <Education education={data.education} />
+            <Projects projects={data.projects} />
+            <Contact contact={data.contact} />
+          </main>
+          <Footer footer={data.footer} />
+        </div>
+      );
+    })
+  }
+
+  <script is:inline>
+    document.addEventListener("click", function (event) {
+      const button = event.target.closest("[data-lang-toggle]");
+      if (!button) return;
+
+      const current = document.documentElement.getAttribute("data-lang");
+      const next = current === "es" ? "en" : "es";
+
+      document.documentElement.setAttribute("lang", next);
+      document.documentElement.setAttribute("data-lang", next);
+      localStorage.setItem("lang", next);
+    });
+  </script>
+</BaseLayout>

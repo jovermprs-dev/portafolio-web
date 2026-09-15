@@ -1,0 +1,27 @@
+---
+import type { Content } from "../i18n/content";
+
+interface Props {
+  skills: Content["skills"];
+}
+
+const { skills } = Astro.props;
+---
+
+<section id="skills" class="skills wrapper">
+  <h2>{skills.heading}</h2>
+  <div class="skills__grid">
+    {
+      skills.groups.map((group) => (
+        <div class="skills__group">
+          <h3>{group.label}</h3>
+          <ul class="tag-list">
+            {group.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>

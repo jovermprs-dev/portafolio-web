@@ -1,0 +1,16 @@
+---
+import type { Content } from "../i18n/content";
+
+interface Props {
+  footer: Content["footer"];
+}
+
+const { footer } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="wrapper">
+    <p>{footer.text} © {year}</p>
+  </div>
+</footer>
