@@ -72,12 +72,25 @@ html[data-lang="es"] [data-lang-section="es"] {
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+.nav__links li {
+  flex-shrink: 0;
 }
 
 .nav__links a {
   color: var(--color-text-muted);
   text-decoration: none;
   font-size: 0.95rem;
+  white-space: nowrap;
   transition: color 0.15s ease;
 }
 
@@ -93,6 +106,7 @@ html[data-lang="es"] [data-lang-section="es"] {
   border: none;
   padding: 0;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .lang-switch__flag {
