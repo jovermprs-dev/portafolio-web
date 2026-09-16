@@ -415,6 +415,30 @@ section h2 {
   margin-bottom: 0.5rem;
 }
 
+.project-card--live {
+  border-style: solid;
+  border-color: var(--color-accent);
+  text-align: left;
+  color: var(--color-text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.project-card__badge--live {
+  background: var(--color-accent);
+  color: #06251a;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.project-card__link {
+  margin-top: 1rem;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+}
+
 .project-card h3 {
   margin: 0 0 0.5rem;
   color: var(--color-text);

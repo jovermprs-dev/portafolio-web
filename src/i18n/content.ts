@@ -29,6 +29,9 @@ export interface EducationEntry {
 export interface ProjectCard {
   name: string;
   description: string;
+  /** Present only for a live, deployed project — omitted for placeholder cards. */
+  url?: string;
+  linkLabel?: string;
 }
 
 export interface Content {
@@ -76,6 +79,7 @@ export interface Content {
     heading: string;
     subheading: string;
     comingSoon: string;
+    live: string;
     cards: ProjectCard[];
   };
   contact: {
@@ -215,8 +219,15 @@ const en: Content = {
     heading: "Projects",
     subheading: "A selection of projects I've worked on.",
     comingSoon: "Coming soon",
+    live: "Live",
     cards: [
-      { name: "Project #1", description: "Details coming soon." },
+      {
+        name: "Koin",
+        description:
+          "A personal finance tracker built with React Native, Expo and Supabase. Deployed here as a full web app, with real login and the same live database as the mobile app.",
+        url: "https://koin.sergiojover.dev",
+        linkLabel: "Visit Koin",
+      },
       { name: "Project #2", description: "Details coming soon." },
       { name: "Project #3", description: "Details coming soon." },
     ],
@@ -359,8 +370,15 @@ const es: Content = {
     heading: "Proyectos",
     subheading: "Una selección de proyectos en los que he trabajado.",
     comingSoon: "Próximamente",
+    live: "En producción",
     cards: [
-      { name: "Proyecto #1", description: "Detalles próximamente." },
+      {
+        name: "Koin",
+        description:
+          "Una app de finanzas personales construida con React Native, Expo y Supabase. Desplegada aquí como aplicación web completa, con login real y la misma base de datos en vivo que la app móvil.",
+        url: "https://koin.sergiojover.dev",
+        linkLabel: "Visitar Koin",
+      },
       { name: "Proyecto #2", description: "Detalles próximamente." },
       { name: "Proyecto #3", description: "Detalles próximamente." },
     ],

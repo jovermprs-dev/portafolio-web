@@ -15,10 +15,17 @@ const { lang, projects } = Astro.props;
   <div class="projects__grid">
     {
       projects.cards.map((card) => (
-        <div class="project-card">
-          <span class="project-card__badge">{projects.comingSoon}</span>
+        <div class:list={["project-card", { "project-card--live": card.url }]}>
+          <span class:list={["project-card__badge", { "project-card__badge--live": card.url }]}>
+            {card.url ? projects.live : projects.comingSoon}
+          </span>
           <h3>{card.name}</h3>
           <p>{card.description}</p>
+          {card.url && (
+            <a class="btn btn--secondary project-card__link" href={card.url} target="_blank" rel="noopener noreferrer">
+              {card.linkLabel} ↗
+            </a>
+          )}
         </div>
       ))
     }
