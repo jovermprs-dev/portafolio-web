@@ -21,11 +21,21 @@ const { lang, projects } = Astro.props;
           </span>
           <h3>{card.name}</h3>
           <p>{card.description}</p>
-          {card.url && (
-            <a class="btn btn--secondary project-card__link" href={card.url} target="_blank" rel="noopener noreferrer">
-              {card.linkLabel} ↗
-            </a>
+          {(card.url || card.androidUrl) && (
+            <div class="project-card__links">
+              {card.url && (
+                <a class="btn btn--secondary project-card__link" href={card.url} target="_blank" rel="noopener noreferrer">
+                  {card.linkLabel} ↗
+                </a>
+              )}
+              {card.androidUrl && (
+                <a class="btn btn--secondary project-card__link" href={card.androidUrl} target="_blank" rel="noopener noreferrer">
+                  {card.androidLabel} ↓
+                </a>
+              )}
+            </div>
           )}
+          {card.androidNote && <p class="project-card__note">{card.androidNote}</p>}
         </div>
       ))
     }

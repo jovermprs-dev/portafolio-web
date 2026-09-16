@@ -32,6 +32,10 @@ export interface ProjectCard {
   /** Present only for a live, deployed project — omitted for placeholder cards. */
   url?: string;
   linkLabel?: string;
+  /** Present only when a direct Android APK download exists for this project. */
+  androidUrl?: string;
+  androidLabel?: string;
+  androidNote?: string;
 }
 
 export interface Content {
@@ -227,6 +231,9 @@ const en: Content = {
           "A personal finance tracker built with React Native, Expo and Supabase. Deployed here as a full web app, with real login and the same live database as the mobile app.",
         url: "https://koin.sergiojover.dev",
         linkLabel: "Visit Koin",
+        androidUrl: "https://koin.sergiojover.dev/download/koin.apk",
+        androidLabel: "Download for Android",
+        androidNote: "Direct APK, not on Google Play — your phone will ask to allow installs from this source.",
       },
       { name: "Project #2", description: "Details coming soon." },
       { name: "Project #3", description: "Details coming soon." },
@@ -378,6 +385,9 @@ const es: Content = {
           "Una app de finanzas personales construida con React Native, Expo y Supabase. Desplegada aquí como aplicación web completa, con login real y la misma base de datos en vivo que la app móvil.",
         url: "https://koin.sergiojover.dev",
         linkLabel: "Visitar Koin",
+        androidUrl: "https://koin.sergiojover.dev/download/koin.apk",
+        androidLabel: "Descargar para Android",
+        androidNote: "APK directo, no está en Google Play — el teléfono pedirá permitir instalar desde este origen.",
       },
       { name: "Proyecto #2", description: "Detalles próximamente." },
       { name: "Proyecto #3", description: "Detalles próximamente." },
