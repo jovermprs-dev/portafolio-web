@@ -235,9 +235,9 @@ const en: Content = {
       {
         name: "Koin",
         description:
-          "A personal finance tracker built with React Native, Expo and Supabase. Deployed here as a full web app, with real login and the same live database as the mobile app.",
+          "A personal finance tracker built with React Native, Expo and Supabase. The web version here is a public demo with fictional data and no backend: add or delete entries to try it; changes only live in your browser.",
         url: "https://koin.sergiojover.dev",
-        linkLabel: "Visit Koin",
+        linkLabel: "View the demo",
         androidUrl: "https://koin.sergiojover.dev/download/koin.apk",
         androidLabel: "Download for Android",
         androidNote: "Direct APK, not on Google Play — your phone will ask to allow installs from this source.",
@@ -395,9 +395,9 @@ const es: Content = {
       {
         name: "Koin",
         description:
-          "Una app de finanzas personales construida con React Native, Expo y Supabase. Desplegada aquí como aplicación web completa, con login real y la misma base de datos en vivo que la app móvil.",
+          "Una app de finanzas personales construida con React Native, Expo y Supabase. La versión web de aquí es una demo pública con datos ficticios y sin backend: añade o borra movimientos para probarla; los cambios solo viven en tu navegador.",
         url: "https://koin.sergiojover.dev",
-        linkLabel: "Visitar Koin",
+        linkLabel: "Ver la demo",
         androidUrl: "https://koin.sergiojover.dev/download/koin.apk",
         androidLabel: "Descargar para Android",
         androidNote: "APK directo, no está en Google Play — el teléfono pedirá permitir instalar desde este origen.",
