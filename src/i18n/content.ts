@@ -228,9 +228,9 @@ const en: Content = {
       {
         name: "JobTrack",
         description:
-          "A job-search tracker built with Angular 22, Spring Boot 4 and PostgreSQL. Save offers, follow each application's status history, and get a profile-to-offer compatibility score and stats computed from your own data. Create an account to try it.",
+          "A job-search tracker built with Angular 22, Spring Boot 4 and PostgreSQL. Save offers, follow each application's status history, and get a profile-to-offer compatibility score and stats computed from your own data. A public read-only demo with sample data: no sign-up needed.",
         url: "https://jobtrack.sergiojover.dev",
-        linkLabel: "Visit JobTrack",
+        linkLabel: "View the demo",
       },
       {
         name: "Koin",
@@ -388,9 +388,9 @@ const es: Content = {
       {
         name: "JobTrack",
         description:
-          "Un gestor de búsqueda de empleo construido con Angular 22, Spring Boot 4 y PostgreSQL. Guarda ofertas, sigue el historial de estados de cada candidatura y consulta la compatibilidad entre tu perfil y cada oferta, además de estadísticas calculadas con tus propios datos. Crea una cuenta para probarlo.",
+          "Un gestor de búsqueda de empleo construido con Angular 22, Spring Boot 4 y PostgreSQL. Guarda ofertas, sigue el historial de estados de cada candidatura y consulta la compatibilidad entre tu perfil y cada oferta, además de estadísticas calculadas con tus propios datos. Demo pública de solo lectura con datos de ejemplo: no hace falta registrarse.",
         url: "https://jobtrack.sergiojover.dev",
-        linkLabel: "Visitar JobTrack",
+        linkLabel: "Ver la demo",
       },
       {
         name: "Koin",
