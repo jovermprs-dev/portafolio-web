@@ -226,6 +226,13 @@ const en: Content = {
     live: "Live",
     cards: [
       {
+        name: "JobTrack",
+        description:
+          "A job-search tracker built with Angular 22, Spring Boot 4 and PostgreSQL. Save offers, follow each application's status history, and get a profile-to-offer compatibility score and stats computed from your own data. Create an account to try it.",
+        url: "https://jobtrack.sergiojover.dev",
+        linkLabel: "Visit JobTrack",
+      },
+      {
         name: "Koin",
         description:
           "A personal finance tracker built with React Native, Expo and Supabase. Deployed here as a full web app, with real login and the same live database as the mobile app.",
@@ -235,7 +242,6 @@ const en: Content = {
         androidLabel: "Download for Android",
         androidNote: "Direct APK, not on Google Play — your phone will ask to allow installs from this source.",
       },
-      { name: "Project #2", description: "Details coming soon." },
       { name: "Project #3", description: "Details coming soon." },
     ],
   },
@@ -380,6 +386,13 @@ const es: Content = {
     live: "En producción",
     cards: [
       {
+        name: "JobTrack",
+        description:
+          "Un gestor de búsqueda de empleo construido con Angular 22, Spring Boot 4 y PostgreSQL. Guarda ofertas, sigue el historial de estados de cada candidatura y consulta la compatibilidad entre tu perfil y cada oferta, además de estadísticas calculadas con tus propios datos. Crea una cuenta para probarlo.",
+        url: "https://jobtrack.sergiojover.dev",
+        linkLabel: "Visitar JobTrack",
+      },
+      {
         name: "Koin",
         description:
           "Una app de finanzas personales construida con React Native, Expo y Supabase. Desplegada aquí como aplicación web completa, con login real y la misma base de datos en vivo que la app móvil.",
@@ -389,7 +402,6 @@ const es: Content = {
         androidLabel: "Descargar para Android",
         androidNote: "APK directo, no está en Google Play — el teléfono pedirá permitir instalar desde este origen.",
       },
-      { name: "Proyecto #2", description: "Detalles próximamente." },
       { name: "Proyecto #3", description: "Detalles próximamente." },
     ],
   },
